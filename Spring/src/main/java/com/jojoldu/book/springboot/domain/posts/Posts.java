@@ -1,5 +1,6 @@
 package com.jojoldu.book.springboot.domain.posts;
 
+import com.jojoldu.book.springboot.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,7 @@ import javax.persistence.Id;
 @NoArgsConstructor // 기본 생성자 자동 추가
 @Entity // 테이블과 링크될 클래스
         // Entity에는 절대 Setter 메서드를 만들지 않음( 차후 기능 변경 시 정말 복잡해짐)
-public class Posts {
+public class Posts extends BaseTimeEntity {
     
     @Id // PK
         // PK는 Long타입의 Auto_increment 권장(Mysql: bigint)
@@ -36,5 +37,10 @@ public class Posts {
         this.title = title;
         this.content = content;
         this.author = author;
+    }
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
     }
 }
